@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
+function LightSwitch(props) {
+  const [state, setState] = useState('OFF')
+
+//function as first argument, second is an array
+  useEffect(() => {
+    console.log('new state equals: ', state)
+//state in [state] refers to what is changing
+  }, [state]);
+
+  
+  return (
+    <div>
+    {state === 'ON' ?  <span>🌞</span> : <span>🌙</span>}
+     
+    <button onClick={() => setState(prevState => (prevState === "OFF" ? 'ON' : 'OFF'))}>
+      
+      
+      
+      
+      Flip Switch{props.buttonIcon}</button>
+  </div>
+  )
+}
+
+
+
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LightSwitch buttonIcon = "💡" />
+      <LightSwitch buttonIcon = "🍕" />
+     
     </div>
   );
 }
